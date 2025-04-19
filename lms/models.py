@@ -1,0 +1,39 @@
+from django.db import models
+
+
+class Course(models.Model):
+    title = models.CharField(
+        max_length=35,
+        blank=True,
+        null=True,
+        verbose_name="Телефон",
+        help_text="Укажите номер телефона",
+    )
+    preview = models.ImageField(
+        upload_to="lms/previews",
+        blank=True,
+        null=True,
+        verbose_name="Превью",
+        help_text="Загрузите превью",
+    )
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
+
+    class Meta:
+        verbose_name = "Курс"
+        verbose_name_plural = "Курсы"
+
+
+class Lesson(models.Model):
+    title = models.CharField(max_length=150, verbose_name="Название")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
+    preview = models.ImageField(
+        upload_to="lms/previews", blank=True, null=True, verbose_name="Превью"
+    )
+    video_link = models.URLField(blank=True, null=True, verbose_name="Ссылка на видео")
+    course = models.ForeignKey(
+        Course, on_delete=models.SET_NULL, verbose_name="Курс", blank=True, null=True
+    )
+
+    class Meta:
+        verbose_name = "Урок"
+        verbose_name_plural = "Уроки"
