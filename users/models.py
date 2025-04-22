@@ -83,3 +83,4 @@ class Payment(models.Model):
     payment_method = models.CharField(
         max_length=10, choices=PAYMENT_METHOD_CHOICES, verbose_name="Способ оплаты"
     )
+
