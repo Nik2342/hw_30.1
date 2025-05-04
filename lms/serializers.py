@@ -1,10 +1,13 @@
 from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
-
-from lms.models import Course, Lesson
+from rest_framework import serializers
+from lms.models import Course, Lesson, Subscription
+from lms.validators import validate_video_url
 
 
 class LessonSerializer(ModelSerializer):
+    video_link = serializers.URLField(validators=[validate_video_url])
+
     class Meta:
         model = Lesson
         fields = "__all__"
@@ -20,3 +23,17 @@ class CourseSerializer(ModelSerializer):
     class Meta:
         model = Course
         fields = ["id", "title", "preview", "description", "lessons_count", "lessons"]
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    is_subscribed = serializers.SerializerMethodField()
+
+    def get_is_subscribed(self, course):
+        user = self.context["request"].user
+        if user.is_authenticated:
+            return Subscription.objects.filter(user=user, course=course).exists()
+        return False
+
+    class Meta:
+        model = Course
+        fields = "__all__"
