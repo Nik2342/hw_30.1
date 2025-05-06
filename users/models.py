@@ -58,7 +58,7 @@ class Payment(models.Model):
         verbose_name="Дата оплаты", auto_now_add=True, null=True, blank=True
     )
     course = models.ForeignKey(
-        Course,
+        "lms.Course",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -66,7 +66,7 @@ class Payment(models.Model):
         verbose_name="Оплаченный курс",
     )
     lesson = models.ForeignKey(
-        Lesson,
+        "lms.Lesson",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
