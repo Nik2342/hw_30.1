@@ -13,6 +13,7 @@ PASSWORD = os.getenv("DBPASSWORD")
 HOST = os.getenv("DBHOST")
 PORT = os.getenv("DBPORT")
 
+STRIPE_API_KEY=os.getenv("STRIPE_API_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     "lms",
     "django_filters",
     "rest_framework_simplejwt",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
