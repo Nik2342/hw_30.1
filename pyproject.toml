@@ -18,6 +18,9 @@ django-filter = "^25.1"
 djangorestframework-simplejwt = "^5.5.0"
 isort = "^6.0.1"
 ipython = "^9.2.0"
+drf-yasg = "^1.21.10"
+stripe = "^12.1.0"
+forex-python = "^1.8"
 
 
 [build-system]
