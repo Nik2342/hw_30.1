@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from lms.tasks import send_message_update
 from rest_framework.generics import (
     CreateAPIView,
     DestroyAPIView,
@@ -36,6 +37,11 @@ class CourseViewSet(ModelViewSet):
         elif self.action in ["update", "retrieve"]:
             self.permission_classes = (IsModer | IsOwner,)
         return super().get_permissions()
+
+    def perform_update(self, serializer):
+
+        course = serializer.save()
+        send_message_update.delay(course.pk)
 
 
 class LessonCreateAPIView(CreateAPIView):
