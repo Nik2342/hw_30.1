@@ -13,7 +13,13 @@ def send_message_update(course_pk):
     subscriptions = Subscription.objects.filter(course=course.pk)
     subscribers = [subscription.user.email for subscription in subscriptions]
 
-    send_mail('Обновление курса', 'Курс, на который Вы подписаны был обновлен.', EMAIL_HOST_USER, subscribers)
+    send_mail(
+        "Обновление курса",
+        "Курс, на который Вы подписаны был обновлен.",
+        EMAIL_HOST_USER,
+        subscribers,
+    )
+
 
 @shared_task
 def deactive_user():

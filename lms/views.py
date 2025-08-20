@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from lms.tasks import send_message_update
 from rest_framework.generics import (
     CreateAPIView,

@@ -2,7 +2,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL, MEDIA_ROOT, MEDIA_URL
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,7 +12,7 @@ PASSWORD = os.getenv("DBPASSWORD")
 HOST = os.getenv("DBHOST")
 PORT = os.getenv("DBPORT")
 
-STRIPE_API_KEY=os.getenv("STRIPE_API_KEY")
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,7 +74,9 @@ DATABASES = {
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
         "HOST": os.getenv("POSTGRES_HOST"),
-        "PORT": os.getenv("POSTGRES_PORT",),
+        "PORT": os.getenv(
+            "POSTGRES_PORT",
+        ),
     }
 }
 
@@ -128,24 +129,24 @@ SIMPLE_JWT = {
 
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30*60
+CELERY_TASK_TIME_LIMIT = 30 * 60
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
-CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == 'True'
-EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL") == 'True'
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL") == "True"
 
-CELERY_BEAT_SCHEDULE = 'django_celery_beat_schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULE = "django_celery_beat_schedulers:DatabaseScheduler"
 
 CELERY_BEAT_SCHEDULE = {
-    'deactive_user': {
-        'task': 'lms.tasks.deactive_user',
-        'schedule': timedelta(days=1),
+    "deactive_user": {
+        "task": "lms.tasks.deactive_user",
+        "schedule": timedelta(days=1),
     },
 }
