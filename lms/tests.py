@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -95,6 +97,7 @@ class CourseTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Course.objects.all().count(), 2)
 
+    @patch("lms.tasks.send_message_update.delay")
     def test_course_update(self):
         """Тестирование изменения курса."""
         url = reverse("lms:course-detail", args=(self.course.pk,))
