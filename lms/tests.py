@@ -98,7 +98,7 @@ class CourseTestCase(APITestCase):
         self.assertEqual(Course.objects.all().count(), 2)
 
     @patch("lms.tasks.send_message_update.delay")
-    def test_course_update(self):
+    def test_course_update(self, mock_celery):
         """Тестирование изменения курса."""
         url = reverse("lms:course-detail", args=(self.course.pk,))
         data = {
