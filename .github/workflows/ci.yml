@@ -111,8 +111,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "
-          cd ${{ secrets.DEPLOY_PATH }} && \
-          docker compose down && \
-          docker compose pull && \
-          docker compose up -d --no-build
+            docker compose -f ${{ secrets.DEPLOY_PATH }}/docker-compose.yml --env-file ${{ secrets.DEPLOY_PATH }}/.env down && \
+            docker compose -f ${{ secrets.DEPLOY_PATH }}/docker-compose.yml --env-file ${{ secrets.DEPLOY_PATH }}/.env pull && \
+            docker compose -f ${{ secrets.DEPLOY_PATH }}/docker-compose.yml --env-file ${{ secrets.DEPLOY_PATH }}/.env up -d --no-build
           "
