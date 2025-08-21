@@ -101,7 +101,12 @@ jobs:
           SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
           DEBUG=0
           EOF
+          chmod 644 '${{ secrets.DEPLOY_PATH }}/.env'
+          chown $USER:$USER '${{ secrets.DEPLOY_PATH }}/.env'
+          ls -la '${{ secrets.DEPLOY_PATH }}/.env'
+          echo 'File created successfully'
           "
+
 
       - name: Deploy to server
         run: |
