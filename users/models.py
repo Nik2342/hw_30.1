@@ -1,8 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models import ForeignKey
-
-from lms.models import Course, Lesson
 
 
 class User(AbstractUser):

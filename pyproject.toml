@@ -24,6 +24,7 @@ forex-python = "^1.8"
 celery = "^5.5.2"
 redis = "^6.1.0"
 django-celery-beat = "^2.8.1"
+flake8 = "^7.3.0"
 
 
 [build-system]

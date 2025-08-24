@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from lms.tasks import send_message_update
 from rest_framework.generics import (
     CreateAPIView,
     DestroyAPIView,
@@ -16,6 +14,7 @@ from rest_framework.viewsets import ModelViewSet
 from lms.models import Course, Lesson, Subscription
 from lms.paginations import CustomPagination
 from lms.serializers import CourseSerializer, LessonSerializer
+from lms.tasks import send_message_update
 from users.permissions import IsModer, IsOwner
 
 
