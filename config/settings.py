@@ -7,11 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 ENGINE = os.getenv("DBENGINE")
-NAME = os.getenv("DBNAME")
-USER = os.getenv("DBUSER")
-PASSWORD = os.getenv("DBPASSWORD")
-HOST = os.getenv("DBHOST")
-PORT = os.getenv("DBPORT")
+NAME = os.getenv("POSTGRES_DB")
+USER = os.getenv("POSTGRES_USER")
+PASSWORD = os.getenv("POSTGRES_PASSWORD")
+HOST = os.getenv("POSTGRES_HOST")
+PORT = os.getenv("POSTGRES_PORT")
 
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
